@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>AI Engineering — Flashcards</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --line:#2a2f3a;
+    --text:#e6e8ee; --dim:#9aa2b1; --accent:#6ea8fe;
+    --good:#3fb950; --bad:#f85149; --warn:#d29922;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f6f7f9; --panel:#fff; --panel2:#f0f2f5; --line:#dde1e8;
+           --text:#1a1d23; --dim:#616a78; --accent:#1f6feb;
+           --good:#1a7f37; --bad:#cf222e; --warn:#9a6700; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+       font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       display:flex;flex-direction:column;align-items:center;padding:24px 16px 60px}
+  .wrap{width:100%;max-width:720px}
+
+  header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  h1{font-size:17px;margin:0;font-weight:650;letter-spacing:-.01em}
+  .sub{color:var(--dim);font-size:13px}
+
+  /* ---- controls ---- */
+  .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  select,button{font:inherit;color:var(--text);background:var(--panel);
+    border:1px solid var(--line);border-radius:8px;padding:7px 11px;cursor:pointer}
+  select:hover,button:hover{border-color:var(--accent)}
+  .ghost{background:transparent;color:var(--dim);font-size:13px;padding:6px 9px}
+
+  /* ---- card ---- */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    min-height:280px;padding:30px 28px;display:flex;flex-direction:column;
+    justify-content:center;cursor:pointer;position:relative;
+    box-shadow:0 1px 3px rgba(0,0,0,.16)}
+  .card:hover{border-color:var(--accent)}
+  .meta{position:absolute;top:14px;left:20px;right:20px;display:flex;
+    justify-content:space-between;font-size:11px;color:var(--dim);
+    text-transform:uppercase;letter-spacing:.07em}
+  .box-pill{border:1px solid var(--line);border-radius:20px;padding:2px 9px;background:var(--panel2)}
+  .term{font-size:23px;font-weight:600;line-height:1.35;letter-spacing:-.01em}
+  .back{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);
+    font-size:16px;color:var(--text)}
+  .hint{margin-top:22px;color:var(--dim);font-size:12.5px}
+  .hidden{display:none}
+
+  /* ---- answer buttons ---- */
+  .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .answers button{padding:14px;font-size:15px;font-weight:600;border-radius:10px}
+  .right{border-color:var(--good);color:var(--good)}
+  .right:hover{background:var(--good);color:#fff;border-color:var(--good)}
+  .wrong{border-color:var(--bad);color:var(--bad)}
+  .wrong:hover{background:var(--bad);color:#fff;border-color:var(--bad)}
+
+  /* ---- stats ---- */
+  .stats{margin-top:20px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:16px 18px}
+  .statrow{display:flex;justify-content:space-between;font-size:13px;color:var(--dim);margin-bottom:12px}
+  .statrow b{color:var(--text);font-weight:600}
+  .bars{display:flex;gap:6px;align-items:flex-end;height:52px}
+  .bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px}
+  .fill{width:100%;background:var(--accent);border-radius:4px 4px 0 0;min-height:3px;opacity:.85}
+  .bar span{font-size:10.5px;color:var(--dim);white-space:nowrap}
+  .legend{margin-top:12px;font-size:11.5px;color:var(--dim);line-height:1.5}
+  footer{margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+
+  /* ---- phone ---- */
+  @media (max-width:640px){
+    body{padding:14px 12px 40px;-webkit-text-size-adjust:100%}
+    .card{min-height:56vh;padding:26px 20px;border-radius:16px}
+    .term{font-size:21px}
+    .back{font-size:16px}
+    .answers button{padding:18px;font-size:16px}   /* thumb-sized targets */
+    .answers small{display:none}                   /* key hints are useless on touch */
+    .controls{gap:6px}
+    select,button{padding:9px 12px}
+    header{margin-bottom:10px}
+  }
+  /* stop double-tap zoom fighting the reveal tap */
+  .card,.answers button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>AI Engineering — Flashcards</h1>
+    <div class="sub" id="deckinfo"></div>
+  </header>
+
+  <div class="controls">
+    <select id="weekFilter"></select>
+    <select id="tagFilter"></select>
+    <button class="ghost" id="shuffleBtn">Skip card</button>
+  </div>
+
+  <div class="card" id="card">
+    <div class="meta">
+      <span id="cardTag"></span>
+      <span class="box-pill" id="cardBox"></span>
+    </div>
+    <div class="term" id="term">Loading…</div>
+    <div class="back hidden" id="back"></div>
+    <div class="hint" id="hint">Click the card, or press <b>Space</b>, to reveal</div>
+  </div>
+
+  <div class="answers hidden" id="answers">
+    <button class="wrong" id="wrongBtn">Missed it &nbsp;<small>(1)</small></button>
+    <button class="right" id="rightBtn">Got it &nbsp;<small>(2)</small></button>
+  </div>
+
+  <div class="stats">
+    <div class="statrow">
+      <span>Session: <b id="sessSeen">0</b> seen · <b id="sessRight">0</b> right · <b id="sessAcc">—</b></span>
+      <span><b id="learned">0</b> / <b id="totalCards">0</b> learned</span>
+    </div>
+    <div class="bars" id="bars"></div>
+    <div class="legend">
+      Cards start in <b>box&nbsp;1</b>. Got it → moves up a box and appears less often.
+      Missed it → straight back to box&nbsp;1 and comes round fast.
+      Box&nbsp;1 cards are drawn <b>16×</b> more often than box&nbsp;5.
+    </div>
+  </div>
+
+  <footer>
+    <span class="sub">Progress saves automatically in this browser.</span>
+    <button class="ghost" id="resetBtn">Reset all progress</button>
+  </footer>
+</div>
+
+<script src="cards.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  const KEY = "ai-eng-flashcards-v1";
+  const BOX_WEIGHT = {1:16, 2:8, 3:4, 4:2, 5:1};   // draw frequency per box
+  const MAX_BOX = 5;
+
+  const ALL = (window.CARDS || []).slice();
+  let state = load();
+  let pool = [], current = null, revealed = false;
+  let sess = {seen:0, right:0};
+
+  /* ---------- persistence ---------- */
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }
+    catch(e){ return {}; }
+  }
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }
+    catch(e){ /* private mode — session-only, no crash */ }
+  }
+  function boxOf(id){ return (state[id] && state[id].box) || 1; }
+
+  /* ---------- filters ---------- */
+  const weekSel = document.getElementById("weekFilter");
+  const tagSel  = document.getElementById("tagFilter");
+
+  function buildFilters(){
+    const weeks = [...new Set(ALL.map(c=>c.week))].sort((a,b)=>a-b);
+    weekSel.innerHTML = '<option value="all">All weeks</option>' +
+      weeks.map(w=>`<option value="${w}">Week ${w}</option>`).join("");
+    const tags = [...new Set(ALL.map(c=>c.tag))].sort();
+    tagSel.innerHTML = '<option value="all">All topics</option>' +
+      tags.map(t=>`<option value="${t}">${t}</option>`).join("");
+  }
+
+  function applyFilters(){
+    const w = weekSel.value, t = tagSel.value;
+    pool = ALL.filter(c =>
+      (w === "all" || String(c.week) === w) &&
+      (t === "all" || c.tag === t));
+    document.getElementById("deckinfo").textContent =
+      pool.length + " card" + (pool.length === 1 ? "" : "s") + " in this deck";
+    next();
+    renderStats();
+  }
+
+  /* ---------- weighted draw ---------- */
+  function next(){
+    if(!pool.length){
+      current = null;
+      document.getElementById("term").textContent = "No cards match this filter.";
+      document.getElementById("back").classList.add("hidden");
+      document.getElementById("answers").classList.add("hidden");
+      document.getElementById("hint").textContent = "";
+      return;
+    }
+    // Weight each card by its box, so struggling cards resurface fast.
+    const weights = pool.map(c => BOX_WEIGHT[boxOf(c.id)] || 1);
+    // Avoid showing the same card twice in a row when there's a choice.
+    if(pool.length > 1 && current){
+      const i = pool.indexOf(current);
+      if(i > -1) weights[i] = 0;
+    }
+    const total = weights.reduce((a,b)=>a+b,0);
+    let r = Math.random() * total, pick = 0;
+    for(let i=0;i<weights.length;i++){ r -= weights[i]; if(r <= 0){ pick = i; break; } }
+    current = pool[pick];
+    revealed = false;
+    render();
+  }
+
+  /* ---------- rendering ---------- */
+  function render(){
+    if(!current) return;
+    document.getElementById("term").textContent = current.term;
+    document.getElementById("back").textContent = current.back;
+    document.getElementById("cardTag").textContent = "Week " + current.week + " · " + current.tag;
+    document.getElementById("cardBox").textContent = "box " + boxOf(current.id);
+    document.getElementById("back").classList.toggle("hidden", !revealed);
+    document.getElementById("answers").classList.toggle("hidden", !revealed);
+    document.getElementById("hint").classList.toggle("hidden", revealed);
+  }
+
+  function renderStats(){
+    document.getElementById("totalCards").textContent = ALL.length;
+    // "Learned" = reached box 4 or 5.
+    document.getElementById("learned").textContent =
+      ALL.filter(c => boxOf(c.id) >= 4).length;
+    document.getElementById("sessSeen").textContent = sess.seen;
+    document.getElementById("sessRight").textContent = sess.right;
+    document.getElementById("sessAcc").textContent =
+      sess.seen ? Math.round(sess.right / sess.seen * 100) + "%" : "—";
+
+    const counts = [1,2,3,4,5].map(b => ALL.filter(c => boxOf(c.id) === b).length);
+    const peak = Math.max(1, ...counts);
+    document.getElementById("bars").innerHTML = counts.map((n,i)=>
+      `<div class="bar">
+         <div class="fill" style="height:${Math.round(n/peak*34)+3}px;
+              opacity:${0.35 + i*0.14}"></div>
+         <span>${i+1}: ${n}</span>
+       </div>`).join("");
+  }
+
+  /* ---------- answering ---------- */
+  function reveal(){
+    if(!current || revealed) return;
+    revealed = true;
+    render();
+  }
+
+  function answer(correct){
+    if(!current || !revealed) return;
+    const id = current.id;
+    const rec = state[id] || {box:1, right:0, wrong:0};
+    if(correct){
+      rec.box = Math.min(MAX_BOX, (rec.box || 1) + 1);
+      rec.right++;
+      sess.right++;
+    }else{
+      rec.box = 1;               // straight back to the front of the queue
+      rec.wrong++;
+    }
+    rec.last = Date.now();
+    state[id] = rec;
+    sess.seen++;
+    save();
+    next();
+    renderStats();
+  }
+
+  /* ---------- events ---------- */
+  document.getElementById("card").addEventListener("click", reveal);
+  document.getElementById("rightBtn").addEventListener("click", e=>{e.stopPropagation(); answer(true);});
+  document.getElementById("wrongBtn").addEventListener("click", e=>{e.stopPropagation(); answer(false);});
+  document.getElementById("shuffleBtn").addEventListener("click", next);
+  weekSel.addEventListener("change", applyFilters);
+  tagSel.addEventListener("change", applyFilters);
+
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    if(!confirm("Reset every card back to box 1? This cannot be undone.")) return;
+    state = {}; sess = {seen:0, right:0}; save(); applyFilters();
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.code === "Space" || e.code === "Enter"){ e.preventDefault(); revealed ? null : reveal(); }
+    else if(e.key === "1"){ answer(false); }
+    else if(e.key === "2"){ answer(true); }
+    else if(e.key.toLowerCase() === "s"){ next(); }
+  });
+
+  /* ---------- go ---------- */
+  buildFilters();
+  applyFilters();
+})();
+</script>
+</body>
+</html>
