@@ -87,4 +87,47 @@ window.CARDS = [
   { id: "01-01-23", week: 1, tag: "System design", term: "Why is the client↔server arrow the important part of the diagram?",
     back: "It's the contract seam: auth, rate limiting, latency measurement and error classification all happen there. Everything else hides behind it and can be replaced." },
 
+  /* ---- Week 1, Topic 2 — JSON, request/response shape, contracts ---- */
+
+  { id: "01-02-01", week: 1, tag: "JSON", term: "What is JSON?",
+    back: "A text format for structured data, used to carry the request and response bodies of an API." },
+
+  { id: "01-02-02", week: 1, tag: "JSON", term: "JSON building blocks",
+    back: "Objects {} (quoted-key → value pairs) and arrays [] (ordered lists), holding strings, numbers, booleans, or null." },
+
+  { id: "01-02-03", week: 1, tag: "JSON", term: "The \"shape\" of a JSON body",
+    back: "Which keys are present and what type each value is. The shape is what an API promises to send and accept." },
+
+  { id: "01-02-04", week: 1, tag: "JSON", term: "How are JSON keys written?",
+    back: "Always as double-quoted strings — never bare words or single quotes." },
+
+  { id: "01-02-05", week: 1, tag: "Misconceptions", term: "MISCONCEPTION: JSON is the same as a Python dict",
+    back: "No. JSON uses lowercase true/false/null, requires double-quoted keys, and allows no trailing commas and no comments." },
+
+  { id: "01-02-06", week: 1, tag: "Contracts", term: "What is an API contract?",
+    back: "The agreed request/response shape that both sides promise to honour. It's what lets client and server, built separately, still work together." },
+
+  { id: "01-02-07", week: 1, tag: "Contracts", term: "Why does shape stability matter?",
+    back: "Clients are written against the promised shape. Keep it stable and every existing client keeps working with no changes; alter it and they break." },
+
+  { id: "01-02-08", week: 1, tag: "Contracts", term: "Why is a broken contract easy to ship?",
+    back: "The server doesn't error when it changes shape — it runs fine. The breakage lands on the client, so nothing obvious flags it at the source." },
+
+  { id: "01-02-09", week: 1, tag: "Contracts", term: "MISCONCEPTION: if the server returns 200 the contract is fine",
+    back: "No. A server can change its response shape and still return 200. The status says the call succeeded, not that the shape matched what clients expect." },
+
+  /* ---- Week 1, Topic 2 p3 — breaking vs non-breaking changes ---- */
+
+  { id: "01-02-10", week: 1, tag: "Contracts", term: "Breaking vs non-breaking change",
+    back: "Breaking = it can make an existing client stop working. Non-breaking = every old client keeps running untouched." },
+
+  { id: "01-02-11", week: 1, tag: "Contracts", term: "Rule of thumb for safe API changes",
+    back: "Adding optional things is safe; removing, renaming, or tightening a requirement is breaking." },
+
+  { id: "01-02-12", week: 1, tag: "Contracts", term: "How do you make a breaking change safely?",
+    back: "Don't edit the old contract in place — ship a new version (e.g. /v2/...) beside the old one so existing clients keep using v1." },
+
+  { id: "01-02-13", week: 1, tag: "Misconceptions", term: "MISCONCEPTION: adding a field is always safe",
+    back: "Only for RESPONSE fields (old clients ignore extras). Adding a REQUIRED request field is breaking — old clients don't send it and get rejected." },
+
 ];
