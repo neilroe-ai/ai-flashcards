@@ -130,4 +130,24 @@ window.CARDS = [
   { id: "01-02-13", week: 1, tag: "Misconceptions", term: "MISCONCEPTION: adding a field is always safe",
     back: "Only for RESPONSE fields (old clients ignore extras). Adding a REQUIRED request field is breaking — old clients don't send it and get rejected." },
 
+  /* ---- Week 2, Topic 1 — validate at boundaries (Pydantic) ---- */
+
+  { id: "02-01-01", week: 2, tag: "Validation", term: "Boundary (in a system)",
+    back: "Any place untrusted data crosses into your system — a request body, webhook, config file, or external API response." },
+
+  { id: "02-01-02", week: 2, tag: "Validation", term: "What a Pydantic model does",
+    back: "Declares a data shape as a Python class, then enforces it: data either matches the model (checked + coerced) or is rejected with a loud error." },
+
+  { id: "02-01-03", week: 2, tag: "Validation", term: "\"Fail loudly at the edge\" — why",
+    back: "A bad value caught at the boundary gives a clean error pointing at the field. The same value caught deep in the code gives a cryptic crash or silently wrong data." },
+
+  { id: "02-01-04", week: 2, tag: "Validation", term: "Coercion (Pydantic)",
+    back: "Pydantic parses as well as checks — a string \"30\" for an int field becomes the int 30, rather than being rejected." },
+
+  { id: "02-01-05", week: 2, tag: "Validation", term: "Payoff of validating at the boundary",
+    back: "Everything past the boundary is trusted and typed — business logic never has to re-check if a field is missing or the wrong type." },
+
+  { id: "02-01-06", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: passing Pydantic validation means the data is correct",
+    back: "It means the shape and types are right, not the business rules. age: int still accepts -5 or 99999 — value rules are a separate layer." },
+
 ];
