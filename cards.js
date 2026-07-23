@@ -150,4 +150,18 @@ window.CARDS = [
   { id: "02-01-06", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: passing Pydantic validation means the data is correct",
     back: "It means the shape and types are right, not the business rules. age: int still accepts -5 or 99999 — value rules are a separate layer." },
 
+  /* ---- Week 2 review (Fri 2026-07-24) — connections across the week ---- */
+
+  { id: "02-RV-01", week: 2, tag: "Validation", term: "Contract vs. its enforcement",
+    back: "The contract is the agreed shape at the seam; Pydantic at the boundary is the thing that actually checks it. A contract nothing checks isn't real." },
+
+  { id: "02-RV-02", week: 2, tag: "Contracts", term: "Two rejection layers at a boundary",
+    back: "Shape/type failures are caught by Pydantic automatically (→ 422). Business-rule failures (party size 500, past date) pass Pydantic and need a separate check in your logic." },
+
+  { id: "02-RV-03", week: 2, tag: "Contracts", term: "Softer alternative to versioning for a new required request field",
+    back: "Add it as optional first; once every client is sending it, tighten it to required. Avoids a hard break without spinning up a v2." },
+
+  { id: "02-RV-04", week: 2, tag: "Validation", term: "Where validation belongs (besides request bodies)",
+    back: "Any untrusted edge: webhook payloads, config/env vars, external API responses, queue messages, CLI args." },
+
 ];
