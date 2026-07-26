@@ -164,4 +164,24 @@ window.CARDS = [
   { id: "02-RV-04", week: 2, tag: "Validation", term: "Where validation belongs (besides request bodies)",
     back: "Any untrusted edge: webhook payloads, config/env vars, external API responses, queue messages, CLI args." },
 
+  /* ---- Week 2 Topic 2 (Mon 2026-07-27) — validators, defaults, parse+validate ---- */
+
+  { id: "02-02-01", week: 2, tag: "Validation", term: "Field default (e.g. party_size: int = 2)",
+    back: "If the client omits the field, the boundary fills it in — so every layer downstream receives a complete object and never has to check for None." },
+
+  { id: "02-02-02", week: 2, tag: "Validation", term: "field validator vs. model validator",
+    back: "A field validator sees one field in isolation; a model validator runs after all fields are parsed and can check relationships between them (e.g. checkout after checkin)." },
+
+  { id: "02-02-03", week: 2, tag: "Validation", term: "model_validate_json()",
+    back: "Parses raw JSON bytes and validates them against the model in one step, so you get one uniform ValidationError instead of a separate JSON-decode failure." },
+
+  { id: "02-02-04", week: 2, tag: "Validation", term: "Three untrusted edges that use the same Pydantic parse-and-validate move",
+    back: "HTTP request bodies, LLM JSON output, and inbound webhook/queue payloads — one mechanism reused at every place bytes enter the system." },
+
+  { id: "02-02-05", week: 2, tag: "Validation", term: "Why Field(default_factory=list) instead of tags: list = []",
+    back: "A bare [] would be one shared object across every instance; default_factory builds a fresh list per object." },
+
+  { id: "02-02-06", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: validators are just extra type checking",
+    back: "Validators are where business rules get promoted into the contract — types can't express 'party size 1–20' or 'checkout after checkin'." },
+
 ];
