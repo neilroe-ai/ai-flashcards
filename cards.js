@@ -184,4 +184,22 @@ window.CARDS = [
   { id: "02-02-06", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: validators are just extra type checking",
     back: "Validators are where business rules get promoted into the contract — types can't express 'party size 1–20' or 'checkout after checkin'." },
 
+  { id: "02-03-01", week: 2, tag: "Config", term: "Environment variable",
+    back: "A key/value string the OS hands your process at startup — the standard way config differs between dev, staging and production without changing the code." },
+
+  { id: "02-03-02", week: 2, tag: "Config", term: "Why env vars need validating like request bodies",
+    back: "They arrive as strings, so \"8000\" isn't an int and \"false\" is truthy; pydantic-settings coerces them to real types and refuses to boot if one is missing." },
+
+  { id: "02-03-03", week: 2, tag: "Config", term: "Field with no default in a Settings model",
+    back: "It is required — the process crashes at startup naming the missing variable, instead of failing later on the first request that needs it." },
+
+  { id: "02-03-04", week: 2, tag: "Config", term: "SecretStr",
+    back: "A Pydantic type whose repr prints ********, so a key can't leak into logs or tracebacks; you call .get_secret_value() at the one place it's used." },
+
+  { id: "02-03-05", week: 2, tag: "Config", term: "Why .env is gitignored but .env.example is committed",
+    back: "The example documents which variables are required without exposing values; a real secret committed once stays in git history forever." },
+
+  { id: "02-03-06", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: environment variables are for secrets",
+    back: "Secrets are only a subset — config is anything that differs per environment, secret or not, so the same image can run unchanged everywhere." },
+
 ];
