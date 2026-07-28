@@ -202,4 +202,19 @@ window.CARDS = [
   { id: "02-03-06", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: environment variables are for secrets",
     back: "Secrets are only a subset — config is anything that differs per environment, secret or not, so the same image can run unchanged everywhere." },
 
+  { id: "02-rev-01", week: 2, tag: "Config", term: "Request validation vs config validation — the difference",
+    back: "Request data crosses the boundary once per request and fails one caller with a 422; config crosses once per process and fails the whole boot before any traffic arrives." },
+
+  { id: "02-rev-02", week: 2, tag: "Config", term: "Why crashing at startup is the better failure",
+    back: "Bad config makes every request wrong, so refusing to boot is cheaper and more obvious than serving wrong answers to real users." },
+
+  { id: "02-rev-03", week: 2, tag: "Validation", term: "What the settings object feeds later in the stack",
+    back: "The FastAPI app at import, the DB connection, core/llm.py's key and model tier, and docker-compose injects it at deploy time." },
+
+  { id: "02-rev-04", week: 2, tag: "Validation", term: "Lax-in, strict-out",
+    back: "Pydantic coerces \"7\" to 7 on the way in because wire data is text, but everything past the boundary is a real typed value." },
+
+  { id: "02-rev-05", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: if config validates at startup, the config is correct",
+    back: "Validation only proves the shape is right — a revoked-but-well-formed API key passes and fails at first use; that needs a health check or runtime error path, not a type." },
+
 ];
