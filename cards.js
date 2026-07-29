@@ -217,4 +217,22 @@ window.CARDS = [
   { id: "02-rev-05", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: if config validates at startup, the config is correct",
     back: "Validation only proves the shape is right — a revoked-but-well-formed API key passes and fails at first use; that needs a health check or runtime error path, not a type." },
 
+  { id: "03-01-01", week: 3, tag: "FastAPI", term: "The four jobs of a web framework",
+    back: "Parse raw HTTP into a Request object, route method+path to a handler, call your function with typed args, serialise the return value into a response." },
+
+  { id: "03-01-02", week: 3, tag: "FastAPI", term: "What a route is keyed on",
+    back: "Method and path together — GET /quotes and POST /quotes are two separate routes." },
+
+  { id: "03-01-03", week: 3, tag: "FastAPI", term: "Path parameter vs query parameter",
+    back: "A path param identifies the resource (/quotes/42) and is required; a query param modifies the request (?status=draft) and takes a default." },
+
+  { id: "03-01-04", week: 3, tag: "FastAPI", term: "The removal test for URL design",
+    back: "If deleting the value still leaves a sensible request, it belongs in the query string; if the URL becomes meaningless, it belongs in the path." },
+
+  { id: "03-01-05", week: 3, tag: "Validation", term: "Why type hints on a handler are validation",
+    back: "FastAPI runs Pydantic on path and query values, so /quotes/abc against quote_id: int returns 422 before your function is called." },
+
+  { id: "03-01-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: the URL is just a string you parse yourself",
+    back: "The URL is untrusted input crossing the validation boundary like any body — the framework types and validates it for you." },
+
 ];
