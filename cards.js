@@ -235,4 +235,19 @@ window.CARDS = [
   { id: "03-01-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: the URL is just a string you parse yourself",
     back: "The URL is untrusted input crossing the validation boundary like any body — the framework types and validates it for you." },
 
+  { id: "03-02-01", week: 3, tag: "FastAPI", term: "How FastAPI decides a parameter is the request body",
+    back: "By its type — a Pydantic model parameter is read from the body, no annotation needed." },
+
+  { id: "03-02-02", week: 3, tag: "FastAPI", term: "Parameter source rules (path / query / body)",
+    back: "Name matches a {placeholder} in the path → path param; a plain scalar that doesn't → query param; a Pydantic model → body." },
+
+  { id: "03-02-03", week: 3, tag: "Validation", term: "What response_model does",
+    back: "It validates and filters the outgoing data, acting as a second validation boundary on the way out." },
+
+  { id: "03-02-04", week: 3, tag: "FastAPI", term: "JSON vs HTML response — what decides",
+    back: "The audience: machines get JSON from a returned dict or model; browsers get HTML from an HTMLResponse or rendered template." },
+
+  { id: "03-02-05", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: one Pydantic model can serve both request and response",
+    back: "In and out are different contracts — the inbound model omits server-owned fields like id, and the outbound model must omit secrets like password_hash." },
+
 ];
