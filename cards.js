@@ -250,4 +250,22 @@ window.CARDS = [
   { id: "03-02-05", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: one Pydantic model can serve both request and response",
     back: "In and out are different contracts — the inbound model omits server-owned fields like id, and the outbound model must omit secrets like password_hash." },
 
+  { id: "03-03-01", week: 3, tag: "FastAPI", term: "Dependency injection — one sentence",
+    back: "A route declares what it needs via Depends(f); FastAPI calls f first and passes the result in, instead of the route fetching it itself." },
+
+  { id: "03-03-02", week: 3, tag: "FastAPI", term: "The main reason DI exists",
+    back: "Testability — a test can swap a dependency with app.dependency_overrides without touching the route's code." },
+
+  { id: "03-03-03", week: 3, tag: "FastAPI", term: "What a dependency using `yield` gives you",
+    back: "Setup before the route and teardown after it, running even if the route raises — where DB session open/close lives." },
+
+  { id: "03-03-04", week: 3, tag: "FastAPI", term: "APIRouter",
+    back: "A mini-app defined in its own file and mounted with app.include_router(), optionally carrying a URL prefix, tags, and router-wide dependencies." },
+
+  { id: "03-03-05", week: 3, tag: "FastAPI", term: "Dependency caching per request",
+    back: "FastAPI resolves the dependency tree once per request and caches each result, so a shared dependency like get_db runs only once even if several things ask for it." },
+
+  { id: "03-03-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: Depends() is special framework magic",
+    back: "It is just a calling convention — Depends(f) means 'call f first and pass me the result'; any callable works." },
+
 ];
