@@ -268,4 +268,22 @@ window.CARDS = [
   { id: "03-03-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: Depends() is special framework magic",
     back: "It is just a calling convention — Depends(f) means 'call f first and pass me the result'; any callable works." },
 
+  { id: "03-04-01", week: 3, tag: "FastAPI", term: "Middleware — one sentence",
+    back: "A ring wrapped around every request: it receives the request, calls the rest of the app, and can modify what goes in or comes back out." },
+
+  { id: "03-04-02", week: 3, tag: "FastAPI", term: "Middleware vs dependency — how to choose",
+    back: "If the logic is the same for every route and doesn't care what the endpoint does, it's middleware; if it's specific to what a route needs, it's a dependency." },
+
+  { id: "03-04-03", week: 3, tag: "FastAPI", term: "Exception handler",
+    back: "A function registered per exception type that turns any raised error into a consistent sanitised response, so routes can just raise instead of using try/except everywhere." },
+
+  { id: "03-04-04", week: 3, tag: "FastAPI", term: "Order of the request lifecycle",
+    back: "Middleware → routing → validation → dependencies → handler, then back out through the same layers in reverse." },
+
+  { id: "03-04-05", week: 3, tag: "FastAPI", term: "What `async def` actually buys you",
+    back: "At each await the route yields the event loop so other requests can run while it waits on I/O — more concurrent in-flight requests per worker." },
+
+  { id: "03-04-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: async def makes code faster",
+    back: "It only helps if you await real I/O; a blocking call inside async def freezes the whole event loop for every user, which is worse than a plain def route." },
+
 ];
