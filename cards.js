@@ -286,4 +286,37 @@ window.CARDS = [
   { id: "03-04-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: async def makes code faster",
     back: "It only helps if you await real I/O; a blocking call inside async def freezes the whole event loop for every user, which is worse than a plain def route." },
 
+  { id: "arch-01-01-01", week: 1, tag: "Helicopter view", term: "The six boxes of an AI application",
+    back: "Frontend, API/backend, AI layer, data, background work, infrastructure — every AI app decomposes into these six roles." },
+
+  { id: "arch-01-01-02", week: 1, tag: "Helicopter view", term: "Job of the API / backend box",
+    back: "The traffic cop: it receives the question, decides which parts handle it, and sends the answer back to the frontend." },
+
+  { id: "arch-01-01-03", week: 1, tag: "Helicopter view", term: "Why background work sits off the main path",
+    back: "It runs jobs with nobody waiting — like OCR-ing thousands of scanned pages — so it stocks the data box instead of serving the live request." },
+
+  { id: "arch-01-01-04", week: 1, tag: "Data", term: "OCR",
+    back: "Optical character recognition — turning a picture of a page (a scanned manual or job card) into text a computer can search." },
+
+  { id: "arch-01-01-05", week: 1, tag: "Misconceptions", term: "MISCONCEPTION: the AI model is the system",
+    back: "The model is one box of six and rarely the hard part; most AI projects fail on the data box — getting the source documents in and findable." },
+
+  { id: "arch-01-01-06", week: 1, tag: "Helicopter view", term: "First question when an AI app is slow, wrong or expensive",
+    back: "Which box? Naming the failing box (frontend, API, AI layer, data, background, infrastructure) before debugging is the whole point of the helicopter view." },
+
+  { id: "arch-01-02-01", week: 1, tag: "Golden path", term: "The 'golden path' of a system",
+    back: "The one core interaction the whole system exists to serve. For the shop assistant: tech names machine + symptom, gets the likely fix with its source." },
+
+  { id: "arch-01-02-02", week: 1, tag: "Golden path", term: "Grounding",
+    back: "The rule that the model may only answer from retrieved source text (the shop's own manuals and logs), not from its general training." },
+
+  { id: "arch-01-02-03", week: 1, tag: "Golden path", term: "Why the answer must carry its source",
+    back: "So the tech can verify the fix against the real page before acting — a citation makes the answer checkable instead of blindly trusted." },
+
+  { id: "arch-01-02-04", week: 1, tag: "Golden path", term: "Correct answer when nothing matches",
+    back: "'I don't have this.' An honest refusal beats a plausible guess — a confident wrong fix on heavy machinery is worse than no answer." },
+
+  { id: "arch-01-02-05", week: 1, tag: "Misconceptions", term: "MISCONCEPTION: 'done' means the AI gives a good answer",
+    back: "Done means a good answer welded to its source, plus an honest 'I don't know' when there isn't one. The citation and refusal are designed-in features." },
+
 ];
