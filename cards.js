@@ -319,4 +319,41 @@ window.CARDS = [
   { id: "arch-01-02-05", week: 1, tag: "Misconceptions", term: "MISCONCEPTION: 'done' means the AI gives a good answer",
     back: "Done means a good answer welded to its source, plus an honest 'I don't know' when there isn't one. The citation and refusal are designed-in features." },
 
+  { id: "arch-01-03-01", week: 1, tag: "Request trace", term: "The live request path, in order",
+    back: "Frontend (1) → API (2) → AI layer (3) → Data (4), then the answer travels back the same way. Only four boxes touch a live request." },
+
+  { id: "arch-01-03-02", week: 1, tag: "Request trace", term: "Each box hands the next what?",
+    back: "A narrower, cleaner thing: frontend passes the raw question, API a checked request, AI a search query then a drafted answer, Data the matching pages." },
+
+  { id: "arch-01-03-03", week: 1, tag: "Request trace", term: "Why isn't background work a step in a live request?",
+    back: "It ran ahead of time (the night before) — OCR-ing and loading scanned paper so Data already holds it. The tech never waits on it at 2am." },
+
+  { id: "arch-01-03-04", week: 1, tag: "Request trace", term: "Infrastructure's place in a request trace",
+    back: "Not a sequential step — it's the ground everything runs on, always present but never a stop the request passes through." },
+
+  { id: "arch-01-03-05", week: 1, tag: "Misconceptions", term: "MISCONCEPTION: every box is a stop on every request",
+    back: "It isn't. Background work and infrastructure are always part of the system but not steps in a live request. 'Part of the system' ≠ 'part of this request'." },
+
+  { id: "arch-01-review-01", week: 1, tag: "Decisions", term: "Week 1 decision: build vs buy vs keep the binders — which, and why?",
+    back: "Build a custom assistant. The problem is the shop's own knowledge locked in their paper; only a custom, grounded system can read and answer from it. Buying solves a different problem; binders already fail at 2am." },
+  { id: "arch-01-review-02", week: 1, tag: "Decisions", term: "Why not just buy an MRP/ERP for the fab shop?",
+    back: "It's generic — built for jobs and inventory, not their thirty-year-old machines, and it can't read thirty years of scanned paper. It replaces the wrong thing." },
+  { id: "arch-01-review-03", week: 1, tag: "Decisions", term: "Why lay out 'keep the binders' at all if it's rejected?",
+    back: "It's the zero-cost do-nothing base case every build must beat. Naming its failure (knowledge retires, line stops at 2am) is what justifies spending on a build." },
+  { id: "arch-01-review-04", week: 1, tag: "Decisions", term: "What does building the assistant give that buying or binders can't?",
+    back: "Answers grounded in the shop's own manuals and repair logs, OCR of scanned paper, and a way to save new fixes back into the system." },
+  { id: "arch-01-review-05", week: 1, tag: "Golden path", term: "The quality bar vs the request trace — how do they relate?",
+    back: "The golden path (grounded, cited answer or honest refusal) is the quality bar; the request trace is that bar running through the six boxes on a live question." },
+
+  { id: "arch-02-01-01", week: 2, tag: "Frontend", term: "The frontend's job, in one line",
+    back: "Capture the question and display the answer — nothing more. It's the only box a human touches." },
+  { id: "arch-02-01-02", week: 2, tag: "Frontend", term: "Thin client",
+    back: "A frontend that carries almost no logic — it just sends input out and paints results back. The thinking (search, the fix) lives in the AI and data boxes behind it." },
+  { id: "arch-02-01-03", week: 2, tag: "Frontend", term: "Why keep the frontend thin?",
+    back: "So you can change or add screens (tablet → phone → voice) without rebuilding the system. Keep the brain shared behind it; swap the front door, keep the house." },
+  { id: "arch-02-01-04", week: 2, tag: "Frontend", term: "Shop-floor reality as design constraints",
+    back: "Greasy gloves, noise, 2am stress mean big taps, few steps, readable at arm's length. The frontend is judged on whether a stressed tech can get a fix, not on looks." },
+  { id: "arch-02-01-05", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: the frontend is 'the app', so that's where the product lives",
+    back: "No — the frontend is the thin edge. The value lives in the data and AI boxes behind it; the frontend is just the window onto them." },
+
 ];
