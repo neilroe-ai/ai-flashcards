@@ -356,4 +356,15 @@ window.CARDS = [
   { id: "arch-02-01-05", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: the frontend is 'the app', so that's where the product lives",
     back: "No — the frontend is the thin edge. The value lives in the data and AI boxes behind it; the frontend is just the window onto them." },
 
+  { id: "arch-02-02-01", week: 2, tag: "Frontend", term: "The three beats of the interaction",
+    back: "Ask (machine + symptom, structured) → Answer (the fix, with its source) → Close the loop (did it work?). A designed flow, not open-ended chat." },
+  { id: "arch-02-02-02", week: 2, tag: "Frontend", term: "Save-a-new-fix loop",
+    back: "When a tech solves something the system didn't know, they save it back as a new repair-log entry — so it becomes tomorrow's answer for the next tech." },
+  { id: "arch-02-02-03", week: 2, tag: "Frontend", term: "Read path vs write path",
+    back: "The read path fetches an answer from the data; the write path saves a new fix back into it. Same thin frontend, two directions." },
+  { id: "arch-02-02-04", week: 2, tag: "Frontend", term: "Why structure the 'Ask' step instead of a blank chat box?",
+    back: "A stressed tech at 2am phrases things a hundred ways. Structured prompts (machine, symptom/code) send a clean question out and get a reliable answer back." },
+  { id: "arch-02-02-05", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: the assistant is just a chatbot / search box",
+    back: "No — it's a purpose-shaped loop with a write-back that grows the knowledge. The shape (ask → answer → save) is the design." },
+
 ];
