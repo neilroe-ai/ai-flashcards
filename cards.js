@@ -367,4 +367,15 @@ window.CARDS = [
   { id: "arch-02-02-05", week: 2, tag: "Misconceptions", term: "MISCONCEPTION: the assistant is just a chatbot / search box",
     back: "No — it's a purpose-shaped loop with a write-back that grows the knowledge. The shape (ask → answer → save) is the design." },
 
+  { id: "arch-02-dec-01", week: 2, tag: "Decisions", term: "Week 2 decision: tablet kiosk vs personal phone vs voice?",
+    back: "Mounted tablet kiosks first — the answer is a procedure with a diagram and a citation, so it must be readable and shop-owned; phone later, voice parked." },
+  { id: "arch-02-dec-02", week: 2, tag: "Decisions", term: "Main cost of choosing a shared tablet kiosk",
+    back: "Hardware and mounting per cell, plus a shared login that weakens 'who saved this fix?' — fixed by named per-tech logins." },
+  { id: "arch-02-dec-03", week: 2, tag: "Frontend", term: "Why voice loses on a fab shop floor",
+    back: "The shop is loud so recognition suffers, and voice can't show a wiring diagram or a visible source citation." },
+  { id: "arch-02-dec-04", week: 2, tag: "Frontend", term: "Why a citation has to be visible",
+    back: "Grounding only reassures if the tech can check the source; an answer read aloud gives nothing to verify against." },
+  { id: "arch-02-dec-05", week: 2, tag: "Frontend", term: "Why is 'which screen?' a cheap decision to revisit?",
+    back: "The frontend is thin, so adding a phone or voice later is a new screen on the same brain — not a rebuild." },
+
 ];
