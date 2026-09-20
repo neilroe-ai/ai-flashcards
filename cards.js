@@ -378,4 +378,15 @@ window.CARDS = [
   { id: "arch-02-dec-05", week: 2, tag: "Frontend", term: "Why is 'which screen?' a cheap decision to revisit?",
     back: "The frontend is thin, so adding a phone or voice later is a new screen on the same brain — not a rebuild." },
 
+  { id: "arch-03-01-01", week: 3, tag: "Backend", term: "Single front door",
+    back: "Every request from the floor goes through the backend; it is the only thing allowed to talk to the AI layer and the data." },
+  { id: "arch-03-01-02", week: 3, tag: "Backend", term: "Why can't the tablet call the AI model directly?",
+    back: "It would have to carry the API key — a paid credential you can't rotate or trust once it's on twenty devices in a workshop." },
+  { id: "arch-03-01-03", week: 3, tag: "Backend", term: "Four things that live behind the front door",
+    back: "Secrets/keys, identity (who is asking), the system rules like grounding, and the log of every question and answer." },
+  { id: "arch-03-01-04", week: 3, tag: "Backend", term: "Why one door makes swapping parts cheap",
+    back: "The frontend only ever knew the door, so you can change model vendor or move the data store without touching any tablet." },
+  { id: "arch-03-01-05", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: the backend is just a middleman passing messages",
+    back: "No — it's where authority lives: credentials, identity, the rules, and the audit trail. A pipe would leak all four onto the shop floor." },
+
 ];
