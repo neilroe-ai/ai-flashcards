@@ -402,4 +402,15 @@ window.CARDS = [
   { id: "arch-03-02-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: the AI layer does the retrieving and the deciding",
     back: "No — the backend orchestrates. If the model chooses its own steps you have a chatbot; if the backend does, you have a system you can audit and change." },
 
+  { id: "arch-03-03-01", week: 3, tag: "Backend", term: "Timeout (in a request)",
+    back: "A deadline the backend puts on a downstream call — 'wait up to N seconds, then stop.' It bounds how long the person waits, not how fast the work runs." },
+  { id: "arch-03-03-02", week: 3, tag: "Backend", term: "Why is a slow call less dangerous than a hung one?",
+    back: "Slow eventually answers; hung waits forever. Without a deadline one stuck step freezes the whole request and the tech stares at a spinner that never resolves." },
+  { id: "arch-03-03-03", week: 3, tag: "Backend", term: "Who is a timeout a promise to?",
+    back: "The person, not the machine. The downstream work may still be grinding; the deadline guarantees the waiting tech gets a fast, honest reply either way." },
+  { id: "arch-03-03-04", week: 3, tag: "Backend", term: "The honest reply when a deadline is hit",
+    back: "'Still working' or 'couldn't answer in time' — a bounded wait keeps the tech's trust; an endless spinner burns it." },
+  { id: "arch-03-03-05", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: a timeout makes slow work faster",
+    back: "It doesn't — it only caps how long anyone waits. The slow work is still slow and has to be solved elsewhere (e.g. indexing ahead of time, or handing it off)." },
+
 ];
