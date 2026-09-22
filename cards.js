@@ -389,4 +389,17 @@ window.CARDS = [
   { id: "arch-03-01-05", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: the backend is just a middleman passing messages",
     back: "No — it's where authority lives: credentials, identity, the rules, and the audit trail. A pipe would leak all four onto the shop floor." },
 
+  { id: "arch-03-02-01", week: 3, tag: "Backend", term: "The five jobs the backend does on one request",
+    back: "Identify who's asking, shape the question, orchestrate (find sources then ask the model), enforce the grounding rule, log and answer." },
+  { id: "arch-03-02-02", week: 3, tag: "Backend", term: "Find-then-ask",
+    back: "The backend fetches the manual pages and repair logs first, then hands them to the model — so the answer is written from real sources, not invented." },
+  { id: "arch-03-02-03", week: 3, tag: "Backend", term: "Where does the 'no source → I don't know' check live?",
+    back: "In the backend, after the model replies and before the answer is sent — not inside the model's prompt." },
+  { id: "arch-03-02-04", week: 3, tag: "Backend", term: "Why shape a loose question into structured fields?",
+    back: "Turning free text into machine = Press 3, code = E14 gives the search something precise to match, which decides how good the retrieved sources are." },
+  { id: "arch-03-02-05", week: 3, tag: "Backend", term: "Orchestrator",
+    back: "The component that decides the order of steps in a request. Here it's the backend — the AI layer only responds when asked." },
+  { id: "arch-03-02-06", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: the AI layer does the retrieving and the deciding",
+    back: "No — the backend orchestrates. If the model chooses its own steps you have a chatbot; if the backend does, you have a system you can audit and change." },
+
 ];
