@@ -413,4 +413,15 @@ window.CARDS = [
   { id: "arch-03-03-05", week: 3, tag: "Misconceptions", term: "MISCONCEPTION: a timeout makes slow work faster",
     back: "It doesn't — it only caps how long anyone waits. The slow work is still slow and has to be solved elsewhere (e.g. indexing ahead of time, or handing it off)." },
 
+  { id: "arch-03-cap-01", week: 3, tag: "Backend", term: "Instant vs queue — the tradeoff",
+    back: "Answer instantly (block & wait) when the lookup is fast; queue (accept & notify) when it's slow. The deadline is the hinge: work that can't finish in time must be queued." },
+  { id: "arch-03-cap-02", week: 3, tag: "Backend", term: "For the fab shop, which is instant and which is queued?",
+    back: "The everyday machine + code → fix is instant (a fast indexed lookup); OCR-ing new scanned paper is queued (it takes minutes)." },
+  { id: "arch-03-cap-03", week: 3, tag: "Backend", term: "Monolith vs split services",
+    back: "One app is simpler to run and reason about — right for one small shop; splitting into services buys independent scaling at the cost of network hops and ops overhead." },
+  { id: "arch-03-cap-04", week: 3, tag: "Backend", term: "Why start the shop on one app?",
+    back: "One team, one modest load: a monolith is easier to build, run and debug. Split later only when a part (like OCR) needs its own scaling." },
+  { id: "arch-03-cap-05", week: 3, tag: "Backend", term: "How do the three Week-3 ideas connect?",
+    back: "The front door (boundary) runs the ordered five-step job, and each downstream step in that job is fenced by a deadline — and that deadline forces the instant-vs-queue call." },
+
 ];
