@@ -424,4 +424,15 @@ window.CARDS = [
   { id: "arch-03-cap-05", week: 3, tag: "Backend", term: "How do the three Week-3 ideas connect?",
     back: "The front door (boundary) runs the ordered five-step job, and each downstream step in that job is fenced by a deadline — and that deadline forces the instant-vs-queue call." },
 
+  { id: "arch-04-01-01", week: 4, tag: "AI layer", term: "RAG (Retrieval-Augmented Generation)",
+    back: "Search your own documents for the passages that match the question, then hand those passages to the model and tell it to answer only from them." },
+  { id: "arch-04-01-02", week: 4, tag: "AI layer", term: "Why can't the model just answer from what it already knows?",
+    back: "It was trained once, in advance, on general text — it never saw this shop's manuals or logs, so a cold answer is a confident guess, not a lookup." },
+  { id: "arch-04-01-03", week: 4, tag: "AI layer", term: "The open-book exam analogy",
+    back: "RAG doesn't test the model's memory — it hands the model the right page first, then asks it to read and summarize, the same way an open-book exam works." },
+  { id: "arch-04-01-04", week: 4, tag: "AI layer", term: "Where does RAG sit in the backend's five-step job (Week 3)?",
+    back: "It's the 'ask' half of orchestrate — after the backend finds sources in Data, RAG is how the AI layer turns question + sources into a grounded answer." },
+  { id: "arch-04-01-05", week: 4, tag: "Misconceptions", term: "MISCONCEPTION: RAG means the model was trained on your documents",
+    back: "No — nothing is retrained. Documents are searched fresh at the moment of the question and handed over as context that disappears once the answer is sent." },
+
 ];
