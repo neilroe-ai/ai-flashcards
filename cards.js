@@ -435,4 +435,13 @@ window.CARDS = [
   { id: "arch-04-01-05", week: 4, tag: "Misconceptions", term: "MISCONCEPTION: RAG means the model was trained on your documents",
     back: "No — nothing is retrained. Documents are searched fresh at the moment of the question and handed over as context that disappears once the answer is sent." },
 
+  { id: "arch-04-02-01", week: 4, tag: "AI layer", term: "Embedding",
+    back: "A fingerprint made of numbers that captures what a piece of text means, so passages with similar meaning end up with similar fingerprints." },
+  { id: "arch-04-02-02", week: 4, tag: "AI layer", term: "Why doesn't retrieval just search for the exact words?",
+    back: "Two descriptions of the same fault (\"grinding\" vs \"scraping noise\") can share zero words — matching by meaning (embeddings) finds it, a keyword search misses it." },
+  { id: "arch-04-02-03", week: 4, tag: "AI layer", term: "Top-K",
+    back: "The handful of best-matching passages (usually 3–5) that retrieval hands on to prompt assembly — not just the single closest match." },
+  { id: "arch-04-02-04", week: 4, tag: "Misconceptions", term: "MISCONCEPTION: retrieval is a keyword (Ctrl+F) search",
+    back: "No — it compares meaning via embeddings, which is also why two unrelated problems described in similar language can look like a false match." },
+
 ];
