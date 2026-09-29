@@ -444,4 +444,15 @@ window.CARDS = [
   { id: "arch-04-02-04", week: 4, tag: "Misconceptions", term: "MISCONCEPTION: retrieval is a keyword (Ctrl+F) search",
     back: "No — it compares meaning via embeddings, which is also why two unrelated problems described in similar language can look like a false match." },
 
+  { id: "arch-04-03-01", week: 4, tag: "AI layer", term: "Prompt assembly",
+    back: "The backend builds one message per question from three labelled parts: rules, the retrieved sources (each with an ID), and the tech's question." },
+  { id: "arch-04-03-02", week: 4, tag: "AI layer", term: "Citation (in RAG)",
+    back: "A tag like [S1] in the model's answer pointing to a source passage it was handed — it makes the answer checkable by the backend and the tech." },
+  { id: "arch-04-03-03", week: 4, tag: "AI layer", term: "How does the backend enforce grounding after the model answers?",
+    back: "It checks every citation points to a passage it actually handed over and that at least one exists; otherwise it replies with the honest 'no source found'." },
+  { id: "arch-04-03-04", week: 4, tag: "AI layer", term: "Why label each source with an ID and origin in the prompt?",
+    back: "So the model can cite precisely and the backend can verify — and the tech can see which manual page or log the fix came from." },
+  { id: "arch-04-03-05", week: 4, tag: "Misconceptions", term: "MISCONCEPTION: telling the model 'only use the sources' guarantees grounding",
+    back: "No — a prompt rule is a request. Grounding is enforced by the backend's citation check, so keep both safeguards." },
+
 ];
