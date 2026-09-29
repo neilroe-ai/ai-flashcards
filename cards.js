@@ -455,4 +455,14 @@ window.CARDS = [
   { id: "arch-04-03-05", week: 4, tag: "Misconceptions", term: "MISCONCEPTION: telling the model 'only use the sources' guarantees grounding",
     back: "No — a prompt rule is a request. Grounding is enforced by the backend's citation check, so keep both safeguards." },
 
+  { id: "arch-05-01-01", week: 5, tag: "AI layer", term: "Why is meaning search shaky for error codes like E14?",
+    back: "Codes are exact IDs, not meanings; E14 and E41 look nearly identical as fingerprints, so wrong-code passages can rank high." },
+  { id: "arch-05-01-02", week: 5, tag: "AI layer", term: "Exact lookup (code table)",
+    back: "A precise search on machine + code that returns entries for exactly that pair, never a near-miss." },
+  { id: "arch-05-01-03", week: 5, tag: "AI layer", term: "Hybrid search",
+    back: "Running an exact lookup for identifiers and a meaning search for descriptions, then merging both into one shortlist." },
+  { id: "arch-05-01-04", week: 5, tag: "AI layer", term: "Why must the machine be part of the code lookup?",
+    back: "The same error code can mean different faults, with different fixes, on different machines." },
+  { id: "arch-05-01-05", week: 5, tag: "Misconceptions", term: "MISCONCEPTION: meaning search is smarter, so it should handle error codes too",
+    back: "No — fuzzy matching is a weakness for exact identifiers; use exact lookup for codes and meaning search for symptoms." },
 ];
